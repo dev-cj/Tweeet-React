@@ -1,0 +1,73 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "Name": "Dan Brown",
+      "Email": "danbrown@gmail.com",
+      "Password": "DanBrown",
+      "id": 2
+    },
+    {
+      "Name": "name",
+      "Email": "name@domain.com",
+      "Password": "encryptedpassword",
+      "id": 3
+    }
+  ],
+  "comments": [
+    {
+      "title": "DaVinci Code",
+      "body": "Dan Brown",
+      "id": 1
+    },
+    {
+      "title": "Worth Dying For",
+      "body": "Lee Child",
+      "id": 2
+    },
+    {
+      "title": "Eleven Minutes",
+      "body": "Paulo Coelho",
+      "id": 3
+    },
+    {
+      "title": "Veronica Decides To Die",
+      "body": "Paulo Coelho",
+      "id": 4
+    },
+    {
+      "title": "If it's not forever",
+      "body": "Durjoy Dutta",
+      "id": 5
+    },
+    {
+      "title": "The Monk Who Sold His Ferrari",
+      "body": "Robin Sharma",
+      "id": 6
+    },
+    {
+      "title": "Alchemist",
+      "body": "Paulo Coelho",
+      "id": 7
+    },
+    {
+      "title": "The Boy Who Loved",
+      "body": "Durjoy Dutta",
+      "id": 8
+    },
+    {
+      "title": "Revolution 2020",
+      "body": "Chetan Bhagat",
+      "id": 9
+    }
+  ],
+  "profile": {
+    "Name": "dan brown",
+    "Email": "danbrown@gmail.com",
+    "Password": "DanBrown"
+  }
+}
