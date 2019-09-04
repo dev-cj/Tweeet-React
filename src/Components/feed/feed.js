@@ -18,8 +18,6 @@ class Feed extends Component {
     }
 
     anotherFunc() {
-        this.setState({ posts: [] });
-            console.log(this.state.posts)
             this.getPosts()
             this.callBackUpdateFalse()
     }
