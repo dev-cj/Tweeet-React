@@ -31,7 +31,7 @@ class HelloUser extends Component {
             default:
                 return (
                     <div className="flex userDiv">
-                        <h1 className="hidden">hidden h1</h1>
+                        <h1 style={{ visibility: 'hidden' }}>hidden h1</h1>
                         <h1 className="userName">Hello {this.state.userName}</h1>
                         <button className="button is-info is-inverted is-outlined btn logOut" onClick={this.logOutHandler.bind(this)}>Log Out</button>
                     </div>

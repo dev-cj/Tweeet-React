@@ -35,7 +35,7 @@ class Feed extends Component {
         axios.get(url).then(response => response.data)
             .then((data) => {
                 this.setState({
-                    PostCount: data.length, posts: data
+                    PostCount: data.length, posts: data.reverse()
                 });
             })
     }
