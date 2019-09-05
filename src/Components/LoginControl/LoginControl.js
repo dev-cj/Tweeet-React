@@ -34,7 +34,7 @@ class LoginControl extends Component {
                 )
             default:
                 return (
-                    <div className="flexRow">
+                    <div className="flexRow rowToColumn">
                         <LoginForm pFh={this.passFuncHandler.bind(this)}/>
                         <RegisterForm />
                     </div>

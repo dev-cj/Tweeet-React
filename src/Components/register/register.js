@@ -43,7 +43,7 @@ class RegisterForm extends Component {
         const{name,email,password} = this.state
 
         return (
-            <div className="message is-large is-primary">
+            <div className="message is-large is-primary divHeight">
                 <form  onSubmit={this.submitHandler}>
                 <h1 className="userName message-header">Register Form</h1>
                 <div className="field">

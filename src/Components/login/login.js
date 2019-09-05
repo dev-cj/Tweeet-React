@@ -46,7 +46,7 @@ class LoginForm extends Component {
     render() {
         const { inputEmail, inputPassword } = this.state
         return (
-            <div className="message is-large is-primary">
+            <div className="message is-large is-primary divHeight">
                 <form onSubmit={this.submitHandler}>
                     <h1 className="userName message-header">Login Form</h1>
                     <div className="field">
