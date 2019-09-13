@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+//import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
 class LoginForm extends Component {
@@ -14,6 +15,10 @@ class LoginForm extends Component {
             userName: 'Guest User',
             isLoggedIn: null,
         }
+    }
+
+    componentWillReceiveProps(props) {
+        console.log(this.props)
     }
 
     changeHandler = (e) => {
@@ -33,7 +38,8 @@ class LoginForm extends Component {
                     this.setState({userName: data[1].Name})
                     console.log("id matched")
                     Cookies.set('name', this.state.userName);
-                    this.setState({ isLoggedIn: true })
+                    this.setState({ isLoggedIn: true });
+                    console.log(this.props)
                     this.props.pFh();
                 } else {
                     console.log("error")
@@ -63,7 +69,7 @@ class LoginForm extends Component {
                     </div>
                     <button type="submit" className="button is-primary">Login</button>
                 </form>
-            </div>
+                </div>
         )
     }
 }
