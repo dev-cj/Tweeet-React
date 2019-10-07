@@ -4,8 +4,7 @@ import RegisterForm from '.././register/register';
 import AddPost from '../addPost/addPost';
 import { BrowserRouter as Router, Switch, Route, NavLink, Link } from 'react-router-dom';
 import createBrowserHistory from '../../history';
-
-
+import store from '../redux/store';
 
 class LoginControl extends Component {
     constructor(props) {

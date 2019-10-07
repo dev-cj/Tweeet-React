@@ -7,8 +7,10 @@ import HelloUser from './Components/hello user/helloUser';
 import LoginControl from './Components/LoginControl/LoginControl';
 import { BrowserRouter as Router, Route, } from 'react-router-dom';
 import createBrowserHistory from './history';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-
+const store = createStore(() => []);
 
 class App extends Component {
   constructor(props) {
@@ -21,10 +23,10 @@ class App extends Component {
   }
   // state: userName is passed to Hello User as props
   //isLoggedIn is passed to LoginControl to check whether to show Login/Register or Dialog to add Post
-  
+
   componentWillReceiveProps(isLoggedIn) {
     this.setState(isLoggedIn);
-}
+  }
 
   componentWillMount() {
     this.getUserName();
@@ -40,7 +42,7 @@ class App extends Component {
     } else {
       this.setState({
         userName: 'Guest',
-        isLoggedIn: false 
+        isLoggedIn: false
       })
     }
   }
@@ -51,43 +53,47 @@ class App extends Component {
     });
   }
 
-//after feed component re-rendered itself again it changes the state {updateRequired} here to avoid infinite loop
+  //after feed component re-rendered itself again it changes the state {updateRequired} here to avoid infinite loop
   callBackUpdateFalse() {
     if (this.state.updateRequired) {
       this.setState({ updateRequired: !this.state.updateRequired });
     } else {
       console.log("callBackUpdateFalse")
     }
-  }   
-  
+  }
+
   render() {
-    return (<Router history={createBrowserHistory}>
-      <div>
-        <div className="hero is-info hero-body">
-          <div className="container has-text-centered">
-            <p className="title">
-              Tweeet
-            </p>
-          </div>
+    return (
+      <Provider store={store}>
+        <Router history={createBrowserHistory}>
+          <div>
+            <div className="hero is-info hero-body">
+              <div className="container has-text-centered">
+                <p className="title">
+                  Tweeet
+                </p>
+              </div>
             </div>
-        <section className="hero is-medium is-primary is-bold">
-          <div className="hero is-primary">
-            <div className="subtitle">
-              <HelloUser userName={this.state.userName}
-                gUn={this.getUserName.bind(this)} />
-            </div>
-          </div>
-        </section>
+            <section className="hero is-medium is-primary is-bold">
+              <div className="hero is-primary">
+                <div className="subtitle">
+                  <HelloUser userName={this.state.userName}
+                    gUn={this.getUserName.bind(this)} />
+                </div>
+              </div>
+            </section>
 
             <LoginControl
-          isLoggedIn={this.state.isLoggedIn}
-          gUn={this.getUserName.bind(this)}
-          updateFeedFromApp={this.updateFeedFromApp.bind(this)}/>
-        <Feed
-          updateRequired={this.state.updateRequired}
-          callBackFalse={this.callBackUpdateFalse.bind(this)}
-        />
-          </div></Router>
+              isLoggedIn={this.state.isLoggedIn}
+              gUn={this.getUserName.bind(this)}
+              updateFeedFromApp={this.updateFeedFromApp.bind(this)} />
+            <Feed
+              updateRequired={this.state.updateRequired}
+              callBackFalse={this.callBackUpdateFalse.bind(this)}
+            />
+          </div>
+        </Router>
+      </Provider>
     )
   }
 }
