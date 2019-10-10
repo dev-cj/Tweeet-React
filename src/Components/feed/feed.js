@@ -9,12 +9,10 @@ class Feed extends Component {
     //         posts: []
     //     }
     // }
-    // componentDidUpdate(updateRequired) {
+    // componentDidUpdate(prevprops) {
     //     console.log(this.props);
-    //     if (this.props.updateRequired === true) {
-    //         this.anotherFunc();
-    //     } else {
-    //         console.log("update not required")
+    //     if (prevprops  !== this.props.posts) {
+    //         return true;
     //     }    
     // }
 
@@ -26,12 +24,15 @@ class Feed extends Component {
     // callBackUpdateFalse() {
     //     this.props.callBackFalse();
     // }    
-
-    componentDidMount() {
+    
+    componentWillMount() {
         this.props.getTheFeed();
         console.log(this.props)
     }
-
+    componentDidMount() {
+        this.forceUpdate();
+        console.log(this.props.posts) 
+    }
     // getPosts() {
     //     const url = 'http://localhost:3000/comments';
     //     axios.get(url).then(response => response.data)
@@ -43,8 +44,8 @@ class Feed extends Component {
     // }
 
     render() {
-        let postsFeed = this.props.postsFeed
-        this.card = postsFeed.reverse().map((posts, key) =>
+        let posts = this.props.posts
+        this.card = posts.reverse().map((posts, key) =>
             <div key={posts.id} className=" card message is-success">
                 <div className=" notification is-primary card-header"><h1>Feed</h1></div>
                 <header className="card-header">
@@ -58,11 +59,10 @@ class Feed extends Component {
                 </div>
             </div>
         )
+        console.log(this.props)
         return (
             <div className="feedFlex">
                 {this.card}
-                <div>
-                    <h1>{this.props.postCount}</h1></div>
             </div>
         )
     }
@@ -70,7 +70,7 @@ class Feed extends Component {
 
 const mapStateToProps = state => {
     return {
-        postsFeed: state.posts
+        posts: state.posts
     }
 }
 const mapDispatchToProps = (dispatch) => {
