@@ -2,59 +2,58 @@ import React, { Component } from 'react';
 import LoginForm from '.././login/login';
 import RegisterForm from '.././register/register';
 import AddPost from '../addPost/addPost';
+//eslint-disable-next-line
 import { BrowserRouter as Router, Switch, Route, NavLink, Link } from 'react-router-dom';
 import createBrowserHistory from '../../history';
-import store from '../redux/store';
+//import store from '../redux/store';
+import { connect } from 'react-redux';
+
 
 class LoginControl extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoggedIn: this.props.isLoggedIn
-        }
-        this.passFuncHandler = this.passFuncHandler.bind(this)
-    }
-    componentWillReceiveProps(isLoggedIn) {
-        this.setState(isLoggedIn);
-    }
-    //to pass function as prop from {login form} to {App}
-    passFuncHandler() {
-        console.log("one")
-        this.props.gUn();
-    }
-    //to pass function as a prop from {addPost} to {App}
-    UpdateRequired() {
-        this.props.updateFeedFromApp();
-    }
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         isLoggedIn: this.props.isLoggedIn
+    //     }
+    //     this.passFuncHandler = this.passFuncHandler.bind(this)
+    // }
+    // componentWillReceiveProps(isLoggedIn) {
+    //     this.setState(isLoggedIn);
+    // }
+    // //to pass function as prop from {login form} to {App}
+    // passFuncHandler() {
+    //     console.log("one")
+    //     //this.props.gUn();
+    // }
+    // //to pass function as a prop from {addPost} to {App}
+    // UpdateRequired() {
+    //     this.props.updateFeedFromApp();
+    // }
 
     componentDidMount(props) {
         console.log(this.props);
     }
-    shouldComponentUpdate(isLoggedIn) {
-        if (this.isLoggedIn !== isLoggedIn) {
-            console.log(this.isLoggedIn);
-            return true;
-        };
-    }
+    // shouldComponentUpdate(isLoggedIn) {
+    //     if (this.isLoggedIn !== isLoggedIn) {
+    //         console.log(this.isLoggedIn);
+    //         return true;
+    //     };
+    // }
 
     render() {
-        let isLoggedIn = this.state.isLoggedIn;
+        //let isLoggedIn = this.props.isLoggedIn;
 
-        switch (isLoggedIn) {
+        switch (this.props.isLoggedIn) {
             case true:
                 console.log("i made this far!");
                 createBrowserHistory.push('/addpost');
                 return (
-                    
                     <div className="control">
-                    <AddPost UpdateRequired={this.UpdateRequired.bind(this)} />
-                        
+                    <AddPost />
                     </div>
-
                 )
             default:
                 return (
-                    
                         <div>
                             <hr className="hr" />
                             <div className="hero userDiv is-primary loginControlLinks">
@@ -80,7 +79,7 @@ class LoginControl extends Component {
                             </div>
                             <div className="flexRow rowToColumn">
                                 <Switch>
-                                    <Route exact path="/login" render={() => <LoginForm  pFh={this.passFuncHandler}  />} />
+                                    <Route exact path="/login" render={() => <LoginForm />} />
                                     <Route exact path="/register" component={RegisterForm} />
                                     <Route exact path="/" render={() => {
                                         return (
@@ -104,6 +103,11 @@ class LoginControl extends Component {
 
     }
 }
+const mapStateToProps = state => {
+    return {
+        isLoggedIn : state.isLoggedIn
+    }
+}
 
-export default LoginControl;
+export default connect(mapStateToProps)(LoginControl);
 // <Route path="/login" component={() => <LoginForm pFh={this.passFuncHandler.bind(this)} />} />

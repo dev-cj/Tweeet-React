@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 class AddPost extends Component {
 
@@ -21,7 +22,8 @@ class AddPost extends Component {
                 "title": this.state.title,
                 "body": this.state.body,
            }).then((response) => {
-               this.anotherFunc();
+               //this.anotherFunc();
+               this.props.getTheFeed();
                 console.log(response);
             }).catch(function (error) {
                 console.log(error);
@@ -34,9 +36,9 @@ class AddPost extends Component {
     }
     //this triggers function in LoginControl{its parent component} which then pass props as function in App {parent component} which changes updateRequired state to true
     //addpost => LoginControl => App
-    anotherFunc() {
-        this.props.UpdateRequired();
-    }
+    // anotherFunc() {
+    //     this.props.UpdateRequired();
+    // }
 
     render() {
         let { title, body } = this.state;
@@ -62,4 +64,9 @@ class AddPost extends Component {
     }
 }
 
-export default AddPost;
+const mapDispatchToProps = (dispatch) => {
+    return {
+      getTheFeed: () => dispatch({ type: "getFeed" })
+    }
+  }
+export default connect(null, mapDispatchToProps)(AddPost);

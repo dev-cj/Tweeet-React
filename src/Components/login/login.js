@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 //import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 
 class LoginForm extends Component {
@@ -12,20 +13,20 @@ class LoginForm extends Component {
             inputPassword: '',
             userEmail: '',
             userPass: '',
-            userName: 'Guest User',
-            isLoggedIn: null,
+            //userName: 'Guest User',
+            //isLoggedIn: null,
         }
     }
 
-    componentWillReceiveProps(props) {
-        console.log(this.props)
-    }
+    // componentWillReceiveProps(props) {
+    //     console.log(this.props)
+    // }
 
     changeHandler = (e) => {
         e.preventDefault();
         this.setState({ [e.target.name]: e.target.value })
     }
-    
+
     submitHandler = e => {
         e.preventDefault();
         console.log(this.state)
@@ -35,12 +36,14 @@ class LoginForm extends Component {
                 this.setState({ userEmail: data[1].Email, userPass: data[1].Password })
                 console.log(this.state);
                 if (this.state.inputEmail === this.state.userEmail && this.state.inputPassword === this.state.userPass) {
-                    this.setState({userName: data[1].Name})
+                    //this.setState({ userName: data[1].Name })
                     console.log("id matched")
-                    Cookies.set('name', this.state.userName);
-                    this.setState({ isLoggedIn: true });
+                    Cookies.set('name', data[1].Name);
+                    let thisIsUser = data[1].Name;
+                    this.props.loginInSuccess(thisIsUser)
+                    //this.setState({ isLoggedIn: true });
                     console.log(this.props)
-                    this.props.pFh();
+                    
                 } else {
                     console.log("error")
                 }
@@ -69,8 +72,16 @@ class LoginForm extends Component {
                     </div>
                     <button type="submit" className="button is-primary">Login</button>
                 </form>
-                </div>
+            </div>
         )
     }
 }
-export default LoginForm;
+const mapDispatchToProps = (dispatch) => {
+    return {
+    //   userNotExist: () => dispatch({ type: "loggedOut",payload: "Guest" }),
+      loginInSuccess: (thisIsUser) => dispatch({type:"loggedIn", payload: thisIsUser })
+    }
+  }
+  
+
+export default connect(null,mapDispatchToProps)(LoginForm);
