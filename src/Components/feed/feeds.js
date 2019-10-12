@@ -1,21 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-let posts = [];
 
-const mapStateToProps = state => {
-    return {
-        posts: state.posts
-    }
-}
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getTheFeed: () => dispatch({ type: "getFeed" })
-    }
-}
+const mapStateToProps = (state) => ({
+    posts: state.posts
+})
 
-const Feed = (props) => {
-    //const posts = props.posts
-    const card = posts.reverse().map((posts, key) =>
+function Feed(props) {
+    console.log(props)
+    let posts = [];
+    posts = props.posts
+    console.log(posts)
+    let card = posts.reverse().map((posts, key) =>
         <div key={posts.id} className=" card message is-success">
             <div className=" notification is-primary card-header"><h1>Feed</h1></div>
             <header className="card-header">
@@ -29,14 +24,15 @@ const Feed = (props) => {
             </div>
         </div>
     )
+    console.log(posts)
+    console.log(card)
     return (
         <div className="feedFlex">
             {card}
+            
         </div>
     )
 }
-Feed();
-getTheFeed()
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Feed);
+export default connect(mapStateToProps)(Feed);

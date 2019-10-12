@@ -1,30 +1,28 @@
 import axios from 'axios';
 //import { getPosts, hello } from './actionFeed';
-const initialState = {
+export const initialState = {
     isLoggedIn: false,
     userName: "",
     updateRequired: false,
-    posts: [],
-    postCount: 1
+    posts: []
 }
 
-let hello =[];
+let hello = [];
 const getPosts = () => {
-    
+    //const url = 'http://jsonplaceholder.typicode.com/posts';
     const url = 'http://localhost:3000/comments';
     axios.get(url).then(response => response.data)
         .then((data) => {
-            console.log(data);
+            //console.log(data);
             //let i = Object.keys(data).length -1
             //let i = Object.keys(data)
             //hello = new Array()
-            
             //hello.splice(0, hello.length, ...data);
             hello.splice(0)
             for (let i = 0; i < data.length; i++) {
                 hello.push(data[i])
             }
-            console.log(hello)
+            //console.log(hello)
         })
 }
 const reducer = (state = initialState, action) => {
@@ -53,7 +51,6 @@ const reducer = (state = initialState, action) => {
             // for (let i = 0; i < hello.length; i++) {
             //      newArray.push(hello[i])
             // }
-
             let wow = [];
             wow = hello;
             //wow = [...wow,hello]

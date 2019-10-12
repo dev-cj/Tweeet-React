@@ -14,8 +14,12 @@ import { connect } from 'react-redux';
 class App extends Component {
 
 
-  componentWillMount() {
+  // componentWillMount() {
+  //   this.getUserName();
+  // }
+  componentDidMount() {
     this.getUserName();
+    this.props.getTheFeed();
   }
 
   getUserName() {
@@ -73,7 +77,8 @@ class App extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     userNotExist: () => dispatch({ type: "loggedOut",payload: "Guest" }),
-    userExist: (thisIsUser) => dispatch({type:"loggedIn", payload: thisIsUser })
+    userExist: (thisIsUser) => dispatch({ type: "loggedIn", payload: thisIsUser }),
+    getTheFeed: () => dispatch({ type: "getFeed" })
   }
 }
 

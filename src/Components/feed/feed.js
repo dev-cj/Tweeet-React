@@ -10,12 +10,25 @@ class Feed extends Component {
     //     }
     // }
     // componentDidUpdate(prevprops) {
+    //     console.log(prevprops)
     //     console.log(this.props);
-    //     if (prevprops  !== this.props.posts) {
+    //     if (prevprops.posts  === this.props.posts) {
     //         return true;
     //     }    
     // }
+    // shouldComponentUpdate(prevprops) {
+    //     console.log(prevprops)
+    //     console.log(this.props);
+    //     if (prevprops.posts !== this.props.posts) {
+    //         return true;
+    //     }
+    //     this.forceUpdate();
+    //     return true;
 
+    // }
+    // componentWillReceiveProps(nextProps) {
+    //     console.log("componentWillReceiveProps", this.props)
+    // }
     // anotherFunc() {
     //         this.getPosts()
     //         this.callBackUpdateFalse()
@@ -24,15 +37,27 @@ class Feed extends Component {
     // callBackUpdateFalse() {
     //     this.props.callBackFalse();
     // }    
-    
-    componentWillMount() {
-        this.props.getTheFeed();
-        console.log(this.props)
-    }
-    componentDidMount() {
-        this.forceUpdate();
-        console.log(this.props.posts) 
-    }
+
+    // componentWillMount() {
+    //     //this.props.getTheFeed();
+    //     console.log(this.props)
+    // }
+    // componentDidMount() {
+    //     // this.forceUpdate();
+    //     console.log("componentdidmount", this.props)
+    // }
+    // componentDidUpdate(prevprops) {
+    //     if (prevprops !== this.props)
+    //         console.log("componentDidUpdate", this.props);
+    //     //return true
+    //     //this.forceUpdate(this.componentDidMount)
+
+    // }
+    // shouldComponentUpdate(prevprops) {
+    //     console.log("shouldComponentUpdate")
+    //     if (prevprops !== this.props)
+    //         return true;
+    // }
     // getPosts() {
     //     const url = 'http://localhost:3000/comments';
     //     axios.get(url).then(response => response.data)
@@ -44,7 +69,7 @@ class Feed extends Component {
     // }
 
     render() {
-        let posts = this.props.posts
+        const posts = this.props.posts
         this.card = posts.reverse().map((posts, key) =>
             <div key={posts.id} className=" card message is-success">
                 <div className=" notification is-primary card-header"><h1>Feed</h1></div>
@@ -59,7 +84,10 @@ class Feed extends Component {
                 </div>
             </div>
         )
-        console.log(this.props)
+        console.log("in render block, render posts object", posts)
+        console.log("in render block this.props", this.props);
+        // this.forceUpdate(this.componentWillReceiveProps);
+        //console.log(this.card)
         return (
             <div className="feedFlex">
                 {this.card}
@@ -68,7 +96,7 @@ class Feed extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapTheStateToProps = state => {
     return {
         posts: state.posts
     }
@@ -78,4 +106,4 @@ const mapDispatchToProps = (dispatch) => {
         getTheFeed: () => dispatch({ type: "getFeed" })
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Feed);
+export default connect(mapTheStateToProps, mapDispatchToProps)(Feed);
