@@ -24,7 +24,11 @@ class AddPost extends Component {
                 "body": this.state.body,
            }).then((response) => {
                this.props.updateTheFeed();
-                console.log(response);
+               console.log(response);
+               this.setState({
+                   title: '',
+                   body: ''
+               })
             }).catch(function (error) {
                 console.log(error);
             })
