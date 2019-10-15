@@ -1,28 +1,15 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
-//import { NavLink } from "react-router-dom";
 import { connect } from 'react-redux';
-
+import createBrowserHistory from '../../history';
 
 class HelloUser extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         userName: this.props.userName
-    //     }
-    // }
-    componentDidMount(props) {
-        if (this.props !== props) {
-            console.log(this.props)
-        };
-    }
-    // componentWillReceiveProps() {
-    // }
-
+    
     logOutHandler() {
         Cookies.remove('name');
         console.log('cookies removed')
         this.props.dispatchLogOut();
+        createBrowserHistory.push('/');
     }
 
     render() {
@@ -31,8 +18,6 @@ class HelloUser extends Component {
                 return (
                     <div className="control">
                         <h1 className="userName">Hello {this.props.helloUserName}</h1>
-                        {/*<NavLink exact to="/login" activeClassName="has-text-link">Log</NavLink>
-                <NavLink exact to="/register" activeClassName="has-text-link">Reg</NavLink>*/}
                     </div>
                 )
             default:

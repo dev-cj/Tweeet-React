@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-//import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 
 class LoginForm extends Component {
     constructor(props) {
@@ -13,14 +11,8 @@ class LoginForm extends Component {
             inputPassword: '',
             userEmail: '',
             userPass: '',
-            //userName: 'Guest User',
-            //isLoggedIn: null,
         }
     }
-
-    // componentWillReceiveProps(props) {
-    //     console.log(this.props)
-    // }
 
     changeHandler = (e) => {
         e.preventDefault();
@@ -29,26 +21,19 @@ class LoginForm extends Component {
 
     submitHandler = e => {
         e.preventDefault();
-        console.log(this.state)
         const url = 'http://localhost:3000/posts';
         axios.get(url).then(response => response.data)
             .then((data) => {
                 this.setState({ userEmail: data[1].Email, userPass: data[1].Password })
-                console.log(this.state);
                 if (this.state.inputEmail === this.state.userEmail && this.state.inputPassword === this.state.userPass) {
-                    //this.setState({ userName: data[1].Name })
                     console.log("id matched")
                     Cookies.set('name', data[1].Name);
                     let thisIsUser = data[1].Name;
-                    this.props.loginInSuccess(thisIsUser)
-                    //this.setState({ isLoggedIn: true });
-                    console.log(this.props)
-                    
+                    this.props.loginInSuccess(thisIsUser)                    
                 } else {
                     console.log("error")
                 }
                 this.setState({ inputEmail: '', inputPassword: '' })
-                console.log(this.state)
             })
     }
 
@@ -78,10 +63,8 @@ class LoginForm extends Component {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-    //   userNotExist: () => dispatch({ type: "loggedOut",payload: "Guest" }),
       loginInSuccess: (thisIsUser) => dispatch({type:"loggedIn", payload: thisIsUser })
     }
   }
-  
 
 export default connect(null,mapDispatchToProps)(LoginForm);
