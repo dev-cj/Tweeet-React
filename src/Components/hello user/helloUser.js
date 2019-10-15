@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import createBrowserHistory from '../../history';
 
 class HelloUser extends Component {
-    
+
     logOutHandler() {
         Cookies.remove('name');
         console.log('cookies removed')
@@ -33,14 +33,14 @@ class HelloUser extends Component {
 }
 const mapStateToProps = state => {
     return {
-        helloUserName : state.userName
+        helloUserName: state.userName
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-      dispatchLogOut: () => dispatch({ type: "loggedOut",payload: "Guest" })
-      
+        dispatchLogOut: () => dispatch({ type: "loggedOut", payload: "Guest" })
+
     }
-  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(HelloUser);

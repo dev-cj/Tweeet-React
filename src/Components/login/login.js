@@ -29,7 +29,7 @@ class LoginForm extends Component {
                     console.log("id matched")
                     Cookies.set('name', data[1].Name);
                     let thisIsUser = data[1].Name;
-                    this.props.loginInSuccess(thisIsUser)                    
+                    this.props.loginInSuccess(thisIsUser)
                 } else {
                     console.log("error")
                 }
@@ -63,8 +63,8 @@ class LoginForm extends Component {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-      loginInSuccess: (thisIsUser) => dispatch({type:"loggedIn", payload: thisIsUser })
+        loginInSuccess: (thisIsUser) => dispatch({ type: "loggedIn", payload: thisIsUser })
     }
-  }
+}
 
-export default connect(null,mapDispatchToProps)(LoginForm);
+export default connect(null, mapDispatchToProps)(LoginForm);

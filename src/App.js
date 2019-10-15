@@ -5,7 +5,6 @@ import Cookies from 'js-cookie';
 import Feed from './Components/feed/feed';
 import HelloUser from './Components/hello user/helloUser';
 import LoginControl from './Components/LoginControl/LoginControl';
-//eslint-disable-next-line
 import { BrowserRouter as Router } from 'react-router-dom';
 import createBrowserHistory from './history';
 import { connect } from 'react-redux';

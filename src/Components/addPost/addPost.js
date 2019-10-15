@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import {getPosts} from '../redux/actionFeed';
+import { getPosts } from '../redux/actionFeed';
 
 class AddPost extends Component {
 
@@ -14,24 +14,24 @@ class AddPost extends Component {
     }
 
     changeHandler = (e) => {
-        this.setState({[e.target.name]: e.target.value})
+        this.setState({ [e.target.name]: e.target.value })
     }
 
     submitHandler = e => {
         e.preventDefault()
-           axios.post('http://localhost:3000/comments', {
-                "title": this.state.title,
-                "body": this.state.body,
-           }).then((response) => {
-               this.props.updateTheFeed();
-               console.log(response);
-               this.setState({
-                   title: '',
-                   body: ''
-               })
-            }).catch(function (error) {
-                console.log(error);
+        axios.post('http://localhost:3000/comments', {
+            "title": this.state.title,
+            "body": this.state.body,
+        }).then((response) => {
+            this.props.updateTheFeed();
+            console.log(response);
+            this.setState({
+                title: '',
+                body: ''
             })
+        }).catch(function (error) {
+            console.log(error);
+        })
     }
     render() {
         let { title, body } = this.state;
@@ -44,7 +44,7 @@ class AddPost extends Component {
                     <div className="field-body">
                         <div className="field">
                             <div className="control">
-                                <textarea className="textarea" value={body} name="body" onChange={this.changeHandler} placeholder="Type here" required/>
+                                <textarea className="textarea" value={body} name="body" onChange={this.changeHandler} placeholder="Type here" required />
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@ class AddPost extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      updateTheFeed: () => dispatch(getPosts())
+        updateTheFeed: () => dispatch(getPosts())
     }
-  }
+}
 export default connect(null, mapDispatchToProps)(AddPost);
