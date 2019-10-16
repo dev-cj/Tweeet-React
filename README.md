@@ -1,6 +1,6 @@
 # Tweeet-React
 
-## App with React Router
+## End to End testing with Puppeteer
 
 ### Initialise
 ```
@@ -8,17 +8,9 @@ npm install
 ```
 ### Start json server in folder containing db.json 
 ```
-json-server --watch db.json
+json-server --watch db.json --port 3000
 ```
-
-* Then change localhost Get & Post urls in Components=> {addPost, login, register, feed,} follow comments for reference 
-* For login use
-````
-email: danbrown@gmail.com
-password: DanBrown
-````
-
-### Start NPM server
+### Open another terminal, navigate to directory and run test 
 ```
-npm start
+npm test
 ```
