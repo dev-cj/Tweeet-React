@@ -9,7 +9,7 @@ npm install
 json-server --watch db.json
 ```
 
-* Then change localhost Get & Post urls in Components=> {addPost, login, register, feed,} follow comments for reference 
+* If json-server starts on a host other than :3000, then change localhost Get & Post urls in Components=> {addPost, login, register, feed,} follow comments for reference 
 * For login use
 ````
 email: danbrown@gmail.com
