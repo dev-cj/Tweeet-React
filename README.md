@@ -1,3 +1,10 @@
+```
+Updated App 
+Branch with Router: https://github.com/dev-cj/Tweeet-React/tree/tweet-with-react-router
+Branch with Redux: https://github.com/dev-cj/Tweeet-React/tree/withRedux
+Branch with End to End Testing with puppeteer: https://github.com/dev-cj/Tweeet-React/tree/testWithRedux
+```
+
 # Tweeet-React
 
 ### Initialise
