@@ -6,7 +6,7 @@ export const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-    console.log(state, action)
+    //console.log(state, action)
     switch (action.type) {
         case "loggedIn": {
             return {
