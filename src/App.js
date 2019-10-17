@@ -5,6 +5,9 @@ import Cookies from 'js-cookie';
 import Feed from './Components/feed/feed';
 import HelloUser from './Components/hello user/helloUser';
 import LoginControl from './Components/LoginControl/LoginControl';
+import { BrowserRouter as Router, Route, } from 'react-router-dom';
+import createBrowserHistory from './history';
+
 
 
 class App extends Component {
@@ -58,7 +61,7 @@ class App extends Component {
   }   
   
   render() {
-    return (
+    return (<Router history={createBrowserHistory}>
       <div>
         <div className="hero is-info hero-body">
           <div className="container has-text-centered">
@@ -66,7 +69,7 @@ class App extends Component {
               Tweeet
             </p>
           </div>
-        </div>
+            </div>
         <section className="hero is-medium is-primary is-bold">
           <div className="hero is-primary">
             <div className="subtitle">
@@ -75,17 +78,16 @@ class App extends Component {
             </div>
           </div>
         </section>
-        <div className="">
-          <LoginControl
-            isLoggedIn={this.state.isLoggedIn}
-            gUn={this.getUserName.bind(this)} 
-            updateFeedFromApp={this.updateFeedFromApp.bind(this)} />
-        </div>
+
+            <LoginControl
+          isLoggedIn={this.state.isLoggedIn}
+          gUn={this.getUserName.bind(this)}
+          updateFeedFromApp={this.updateFeedFromApp.bind(this)}/>
         <Feed
           updateRequired={this.state.updateRequired}
-          callBackFalse={this.callBackUpdateFalse.bind(this)}  
+          callBackFalse={this.callBackUpdateFalse.bind(this)}
         />
-      </div>
+          </div></Router>
     )
   }
 }

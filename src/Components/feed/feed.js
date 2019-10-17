@@ -35,12 +35,12 @@ class Feed extends Component {
         axios.get(url).then(response => response.data)
             .then((data) => {
                 this.setState({
-                    PostCount: data.length, posts: data.reverse()
+                    PostCount: data.length, posts: data
                 });
             })
     }
     render() {
-        this.card = this.state.posts.map((posts, key) =>
+        this.card = this.state.posts.reverse().map((posts, key) =>
             <div key={posts.id} className=" card message is-success">
                 <div className=" notification is-primary card-header"><h1>Feed</h1></div>
                 <header className="card-header">

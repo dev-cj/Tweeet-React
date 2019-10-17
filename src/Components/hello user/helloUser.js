@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
+import {  NavLink } from "react-router-dom";
+
+
 
 class HelloUser extends Component {
     constructor(props) {
@@ -8,7 +11,11 @@ class HelloUser extends Component {
             userName: this.props.userName
         }
     }
-
+    componentDidMount(props) {
+        if (this.props !== props) {
+            console.log(this.props)
+        };
+    }
     componentWillReceiveProps(userName) {
         this.setState(userName);
     }
@@ -24,14 +31,16 @@ class HelloUser extends Component {
         switch (thisIsUser) {
             case 'Guest':
                 return (
-                    <div className="control">
+                        <div className="control">
                         <h1 className="userName">Hello {this.state.userName}</h1>
-                    </div>
+                        {/*<NavLink exact to="/login" activeClassName="has-text-link">Log</NavLink>
+                <NavLink exact to="/register" activeClassName="has-text-link">Reg</NavLink>*/}
+                        </div>
                 )
             default:
                 return (
                     <div className="flex userDiv">
-                        <h1 style={{ visibility: 'hidden' }}>hidden h1</h1>
+                        <h1 className="hidden">hidden h1</h1>
                         <h1 className="userName">Hello {this.state.userName}</h1>
                         <button className="button is-info is-inverted is-outlined btn logOut" onClick={this.logOutHandler.bind(this)}>Log Out</button>
                     </div>

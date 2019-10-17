@@ -6,7 +6,9 @@
   display: flex;
   justify-content: space-between;
 }
-
+.hidden {
+  visibility: hidden;
+}
 .title {
   font-family: "Lobster", cursive;
   font-size: 3rem;
@@ -14,7 +16,7 @@
 .userName {
   display: flex;
   margin: 0.5em 0;
-  align-self: center;
+  font-size: 1.4rem;
 }
 .btn {
   display: flex;
@@ -79,6 +81,20 @@
   height: 27rem;
   overflow: hidden;
 }
+
+.hr{
+  width: 100vw;
+  background-color: #ffffff;
+  height: 2px;
+  margin: 0;
+}
+
+.loginControlLinks{
+flex-direction: row;
+justify-content: space-evenly;
+height: 3rem;
+}
+
 @media screen and (max-width: 768px) {
   .rowToColumn {
     display: flex;
