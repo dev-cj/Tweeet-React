@@ -54,7 +54,7 @@ describe('Login Form', () => {
     })
     it('check redux dispatch is called with username', () => {
         expect(dispatch).toHaveBeenCalledTimes(1);
-        expect(dispatch).toHaveBeenCalledWith({"payload": "Dan Brown", "type": "loggedIn"});
+        expect(dispatch).toHaveBeenCalledWith({ "payload": "Dan Brown", "type": "loggedIn" });
     })
 })
 
