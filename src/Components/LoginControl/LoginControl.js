@@ -26,22 +26,21 @@ class LoginControl extends Component {
                             <NavLink
                                 to="/login" exact
                                 className="has-text-light"
-                                activeClassName="has-text-link"
-                            >Login
-                                    </NavLink>
+                                activeClassName="has-text-link">
+                                Login
+                            </NavLink>
                             <NavLink
                                 to="/" exact
                                 className="has-text-light"
-                                activeClassName="has-text-link"
-                            >Home
-                                    </NavLink>
+                                activeClassName="has-text-link">
+                                Home
+                            </NavLink>
                             <NavLink
                                 to="/register" exact
                                 className="has-text-light"
-                                activeClassName="has-text-link"
-                            >Register
-                                    </NavLink>
-
+                                activeClassName="has-text-link">
+                                Register
+                            </NavLink>
                         </div>
                         <div className="flexRow rowToColumn">
                             <Switch>
@@ -62,8 +61,6 @@ class LoginControl extends Component {
                             </Switch>
                         </div>
                     </div>
-
-
                 )
         }
 
