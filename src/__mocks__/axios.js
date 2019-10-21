@@ -19,14 +19,14 @@ module.exports = {
         }
     }),
     post: jest.fn((url) => {
-        if (url === '/something') {
+        if (url=== 'http://localhost:3000/posts') {
             return Promise.resolve({
-                data: 'data'
+                data: 'successfully registered'
             });
         }
-        if (url === '/something2') {
+        if (url=== 'http://localhost:3000/comments') {
             return Promise.resolve({
-                data: 'data2'
+                data: 'post created'
             });
         }
     }),
