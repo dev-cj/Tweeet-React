@@ -1,6 +1,6 @@
 # Tweeet-React
 
-## App with React Router and Redux
+## App with React Router
 
 ### Initialise
 ```
