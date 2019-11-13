@@ -8,8 +8,7 @@ class RegisterForm extends Component {
         this.state = {
             name: '',
             email: '',
-            password: '',
-            response: ''
+            password: ''
         }
     }
 
@@ -20,16 +19,18 @@ class RegisterForm extends Component {
         e.preventDefault()
         console.log(this.state)
         let passLength = this.state.password.length;
-        if (passLength < 8) {
+        if (passLength <= 8) {
             alert("Password should atleast 8 characters in length..")
         } else {
-            axios.post('/api/users', {
-                "name": this.state.name,
-                "email": this.state.email,
-                "password": this.state.password
+            axios.post('http://localhost:3000/posts', {
+                "Name": this.state.name,
+                "Email": this.state.email,
+                "Password": this.state.password
             }).then(function (response) {
                 console.log(response);
-            }).catch(err => this.setState({ response: err.response.data.message }))
+            }).catch(function (error) {
+                console.log(error);
+            })
         }
         this.setState({
             name: '',
@@ -39,7 +40,7 @@ class RegisterForm extends Component {
     }
 
     render() {
-        const { name, email, password, response } = this.state
+        const { name, email, password } = this.state
 
         return (
             <div className="message is-large is-primary divHeight">
@@ -63,9 +64,6 @@ class RegisterForm extends Component {
                         <div className="control">
                             <input className="input" type="password" value={password} name="password" onChange={this.changeHandler} placeholder="Enter Password" autoComplete="on" required />
                         </div>
-                    </div>
-                    <div className="is-size-7 has-text-danger">
-                        <strong>{response}</strong>
                     </div>
                     <button type="submit" className="button is-primary">Register</button>
                 </form>

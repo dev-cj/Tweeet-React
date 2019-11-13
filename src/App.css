@@ -64,13 +64,7 @@
 .card-header-title {
   font-weight: 600;
 }
-.feed{
-  justify-content: space-between;
-  align-items: center;
-}
-.notification{
-  padding-right: 1rem;
-}
+
 .card {
   margin: 2% 1%;
   min-width: 15rem;
@@ -99,10 +93,6 @@
 flex-direction: row;
 justify-content: space-evenly;
 height: 3rem;
-}
-.deleteFeed>svg {
-  fill: white;
-  transform: scale(.9);
 }
 
 @media screen and (max-width: 768px) {
