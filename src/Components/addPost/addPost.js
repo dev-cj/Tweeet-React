@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
-import { getPosts } from '../redux/actionFeed';
+import { addPost } from '../redux/actionFeed';
 
 class AddPost extends Component {
 
@@ -19,19 +18,16 @@ class AddPost extends Component {
 
     submitHandler = e => {
         e.preventDefault()
-        axios.post('http://localhost:3000/comments', {
+        const postBody = {
             "title": this.state.title,
             "body": this.state.body,
-        }).then((response) => {
-            this.props.updateTheFeed();
-            console.log(response);
-            this.setState({
-                title: '',
-                body: ''
-            })
-        }).catch(function (error) {
-            console.log(error);
+        }
+        this.props.addThePost(postBody);
+        this.setState({
+            title: '',
+            body: ''
         })
+
     }
     render() {
         let { title, body } = this.state;
@@ -59,7 +55,7 @@ class AddPost extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateTheFeed: () => dispatch(getPosts())
+        addThePost: (postBody) => dispatch(addPost(postBody))
     }
 }
 export default connect(null, mapDispatchToProps)(AddPost);

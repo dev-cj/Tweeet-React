@@ -26,7 +26,7 @@ class LoginControl extends Component {
                             <NavLink
                                 to="/login" exact
                                 className="has-text-light"
-                                activeClassName="has-text-link"
+                                activeClassName="has-text-link "
                             >Login
                                     </NavLink>
                             <NavLink

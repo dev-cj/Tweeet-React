@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { connect } from 'react-redux';
+import { confirmLogin } from '../redux/actionUser'
 
 class LoginForm extends Component {
     constructor(props) {
@@ -9,8 +10,7 @@ class LoginForm extends Component {
         this.state = {
             inputEmail: '',
             inputPassword: '',
-            userEmail: '',
-            userPass: '',
+            response: ''
         }
     }
 
@@ -21,24 +21,24 @@ class LoginForm extends Component {
 
     submitHandler = e => {
         e.preventDefault();
-        const url = 'http://localhost:3000/posts';
-        axios.get(url).then(response => response.data)
-            .then((data) => {
-                this.setState({ userEmail: data[1].Email, userPass: data[1].Password })
-                if (this.state.inputEmail === this.state.userEmail && this.state.inputPassword === this.state.userPass) {
-                    console.log("id matched")
-                    Cookies.set('name', data[1].Name);
-                    let thisIsUser = data[1].Name;
-                    this.props.loginInSuccess(thisIsUser)
-                } else {
-                    console.log("error")
-                }
-                this.setState({ inputEmail: '', inputPassword: '' })
-            })
+        const url = '/api/auth';
+        axios.post(url, {
+            "email": this.state.inputEmail,
+            "password": this.state.inputPassword
+        }).then((response) => {
+            if (response.status === 200) {
+                this.props.loginInSuccess(response.data.token)
+                Cookies.set('tokenMERN', response.data.token)
+            }
+        }).catch(err => this.setState({
+            response: err.response.data.message,
+            inputEmail: '',
+            inputPassword: ''
+        }))
     }
 
     render() {
-        const { inputEmail, inputPassword } = this.state
+        const { inputEmail, inputPassword, response } = this.state
         return (
             <div className="message is-large is-primary divHeight">
                 <form onSubmit={this.submitHandler}>
@@ -55,6 +55,9 @@ class LoginForm extends Component {
                             <input className="input" type="password" value={inputPassword} name="inputPassword" onChange={this.changeHandler} placeholder="e.g. alexsmith@gmail.com" autoComplete="on" required />
                         </div>
                     </div>
+                    <div className="is-size-7 has-text-danger">
+                        <strong>{response}</strong>
+                    </div>
                     <button type="submit" className="button is-primary">Login</button>
                 </form>
             </div>
@@ -63,7 +66,7 @@ class LoginForm extends Component {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        loginInSuccess: (thisIsUser) => dispatch({ type: "loggedIn", payload: thisIsUser })
+        loginInSuccess: (login) => dispatch(confirmLogin(login))
     }
 }
 

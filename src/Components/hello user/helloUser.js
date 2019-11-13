@@ -6,10 +6,11 @@ import createBrowserHistory from '../../history';
 class HelloUser extends Component {
 
     logOutHandler() {
-        Cookies.remove('name');
+        Cookies.remove('tokenMERN');
         console.log('cookies removed')
         this.props.dispatchLogOut();
         createBrowserHistory.push('/');
+        window.location.reload()
     }
 
     render() {
